@@ -26,7 +26,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+         <Grid Grid.Row="0">
             <Button x:ConnectionId='2' x:Name="backButton"                Style="{StaticResource BackButtonStyle}"/>
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="48" FontWeight="SemiBold" Text="Configuration" Style="{StaticResource PageSubheaderTextStyle}" Margin="120,68,0,42"/>
         </Grid>
@@ -41,11 +41,36 @@
 
                 <Grid Margin="0,20,0,0">
                     <TextBlock FontWeight="SemiBold" Text="Altitude MAX" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
-                    <Slider x:ConnectionId='1' x:Name="AltitudeMax" IsEnabled="True" Minimum="0" Maximum="100" StepFrequency="1" Margin="0,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"                                              />
+                    <Slider x:ConnectionId='1' x:Name="AltitudeMax" IsEnabled="True" Minimum="0" Maximum="100" StepFrequency="1" Margin="0,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"                                                                                      />
                     <TextBlock x:Name="AltitudeMaxValue" Text="{Binding ElementName=AltitudeMax, Path=Value}" Style="{StaticResource PageSubheaderTextStyle}" Margin="0,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBlock x:Name="AltitudeMaxValueUnit" Text="meters" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,0,0"/>
                 </Grid>
-            </StackPanel>
+               <Grid Margin="0,20,0,0">
+                  <TextBlock FontWeight="SemiBold" Text="Yaw Speed" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                  <Slider x:Name="YawSpeed" IsEnabled="True" Minimum="40" Maximum="350" StepFrequency="0.1" Margin="0,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                  <TextBlock x:Name="YawSpeedValue" Text="{Binding ElementName=YawSpeed, Path=Value}" Style="{StaticResource PageSubheaderTextStyle}" Margin="0,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+               </Grid>
+               <Grid Margin="0,20,0,0">
+                  <TextBlock FontWeight="SemiBold" Text="Maximum vertical speed" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                  <Slider x:Name="VZMax" IsEnabled="True" Minimum="200" Maximum="2000" StepFrequency="1" Margin="0,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                  <TextBlock x:Name="VZMaxValue" Text="{Binding ElementName=VZMax, Path=Value}" Style="{StaticResource PageSubheaderTextStyle}" Margin="0,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+               </Grid>
+               <Grid Margin="0,20,0,0">
+                  <TextBlock FontWeight="SemiBold" Text="Maximum bending angle" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                  <Slider x:Name="EulerAngleMax" IsEnabled="True" Minimum="0" Maximum="30" StepFrequency="0.1" Margin="0,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                  <TextBlock x:Name="EulerAngleMaxValue" Text="{Binding ElementName=EulerAngleMax, Path=Value}" Style="{StaticResource PageSubheaderTextStyle}" Margin="0,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+               </Grid>
+
+               <TextBlock x:Name="videoCodec" Margin="0,20,0,0"/>
+               <TextBlock x:Name="FlyMode" Margin="0,20,0,0"/>
+               <ComboBox x:Name="FlyModes"/>
+
+            <Grid Margin="0,20,0,0">
+               <TextBlock FontWeight="SemiBold" Text="Outdoor" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+               <CheckBox x:Name="Outdoor" />
+            </Grid>
+            
+         </StackPanel>
 
             <GridView Name="configItems"
                               Margin="600,0,0,0"

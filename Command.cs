@@ -25,7 +25,8 @@ namespace ARDrone2Client.Common
         }
         public static string Config(string key, float value)
         {
-            return Config(key, ConversionHelper.ToInt(value));
+           //return Config(key, ConversionHelper.ToInt(value));
+           return Config(key, value.ToString());//ConversionHelper.ToInt(value));
         }
         public static string Config(string key, Enum value)
         {

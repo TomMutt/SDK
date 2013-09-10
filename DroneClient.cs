@@ -489,8 +489,16 @@ namespace ARDrone2Client.Common
         public async void SetOutdoorConfiguration()
         {
             SetConfiguration(_configuration.Control.outdoor.Set(true).ToCommand());
-            SetConfiguration(_configuration.Control.flight_without_shell.Set(true).ToCommand());
-            SetConfiguration(_configuration.Control.altitude_max.Set(15000).ToCommand());
+
+
+
+            SetConfiguration(_configuration.Control.flight_without_shell.Set(false).ToCommand());
+
+
+
+            //SetConfiguration(_configuration.Control.altitude_max.Set(15000).ToCommand());
+
+            //SetConfiguration(Configuration.Control.outdoor_control_yaw.Set(6f).ToCommand());
             //SetConfiguration(_configuration.Control.euler_angle_max.Set(0.25f).ToCommand());
             await Log.Instance.WriteLineAsync("DroneClient:SetOutdoorConfiguration");
         }
@@ -499,7 +507,8 @@ namespace ARDrone2Client.Common
         {
             SetConfiguration(_configuration.Control.outdoor.Set(false).ToCommand());
             SetConfiguration(_configuration.Control.flight_without_shell.Set(false).ToCommand());
-            SetConfiguration(_configuration.Control.altitude_max.Set(3000).ToCommand());
+            //SetConfiguration(_configuration.Control.altitude_max.Set(3000).ToCommand());
+
             //SetConfiguration(_configuration.Control.euler_angle_max.Set(0.25f).ToCommand());
 
             //TODO gérer une commande AT*CONFIG_IDS avant d'envoyer la commande dessous

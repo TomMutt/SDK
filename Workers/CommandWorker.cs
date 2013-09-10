@@ -173,7 +173,9 @@ namespace ARDrone2Client.Common.Workers
                 case RequestedState.ResetEmergency:
                     if (state.HasFlag(NavigationState.Emergency))
                     {
-                        _NormalPriorityCommandQueue.Enqueue(Command.Ref(RefMode.ResetEmergency));
+                       _NormalPriorityCommandQueue.Enqueue(Command.Ref(RefMode.Emergency));
+
+                        //_NormalPriorityCommandQueue.Enqueue(Command.Ref(RefMode.ResetEmergency));
                         DroneClient.RequestedState = RequestedState.None;
                     }
                     else

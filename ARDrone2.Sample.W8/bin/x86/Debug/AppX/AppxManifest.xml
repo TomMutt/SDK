@@ -45,15 +45,15 @@
     </Extension>
   </Extensions>
   <Dependencies>
-    <PackageDependency Name="Microsoft.VCLibs.110.00.Debug" MinVersion="11.0.51106.1" />
+    <PackageDependency Name="Microsoft.VCLibs.110.00" MinVersion="11.0.51106.1" />
   </Dependencies>
   <build:Metadata>
     <build:Item Name="TargetFrameworkMoniker" Value=".NETCore,Version=v4.5" />
     <build:Item Name="VisualStudio" Version="11.0" />
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Ultimate 2012" />
-    <build:Item Name="OperatingSystem" Version="6.3.9431.0 (winmain_bluemp.130615-1214)" />
+    <build:Item Name="OperatingSystem" Version="6.2.9200.16384 (win8_rtm.120725-1247)" />
     <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="11.0.60610.1" />
     <build:Item Name="Microsoft.Windows.UI.Xaml.Build.Tasks.dll" Version="11.0.60315.1" />
-    <build:Item Name="MakePri.exe" Version="6.2.9200.20714 (win8_ldr.130510-1807)" />
+    <build:Item Name="MakePri.exe" Version="6.2.9200.16384 (win8_rtm.120725-1247)" />
   </build:Metadata>
 </Package>

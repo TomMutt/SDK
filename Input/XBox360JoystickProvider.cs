@@ -68,18 +68,32 @@ namespace ARDrone2Client.Common.Input
             }
             if (_ControllerState.PacketNumber <= _ControllerPreviousState.PacketNumber)
                 return;
+            var buttons = _ControllerState.Gamepad.Buttons;
+
             //Thumbs
             var leftThumb = NormalizeInput(_ControllerState.Gamepad.LeftThumbX, _ControllerState.Gamepad.LeftThumbY, Convert.ToInt16(SharpDX.XInput.Gamepad.LeftThumbDeadZone * 1.1), _JoystickRange);
             if (leftThumb.NormalizedMagnitude > 0)
             {
-                roll = (float)_ControllerState.Gamepad.LeftThumbX * _RollThrottle / _JoystickRange;
-                pitch = (float)_ControllerState.Gamepad.LeftThumbY * _PitchThrottle / _JoystickRange;
+               if (buttons.HasFlag(GamepadButtonFlags.LeftShoulder))
+               {
+                  roll = (float)_ControllerState.Gamepad.LeftThumbX * _RollThrottle / _JoystickRange;
+                  yaw = (float)_ControllerState.Gamepad.LeftThumbX * _YawThrottle / _JoystickRange;
+               }
+               else
+               {
+                  yaw = (float)_ControllerState.Gamepad.LeftThumbX * _YawThrottle / _JoystickRange;
+                  gaz = (float)_ControllerState.Gamepad.LeftThumbY * _GazThrottle / _JoystickRange;
+               }
+               //roll = (float)_ControllerState.Gamepad.LeftThumbX * _RollThrottle / _JoystickRange;
+               //pitch = (float)_ControllerState.Gamepad.LeftThumbY * _PitchThrottle / _JoystickRange;
             }
             var rightThumb = NormalizeInput(_ControllerState.Gamepad.RightThumbX, _ControllerState.Gamepad.RightThumbY, Convert.ToInt16(SharpDX.XInput.Gamepad.RightThumbDeadZone * 1.1), _JoystickRange);
             if (rightThumb.NormalizedMagnitude > 0)
             {
-                yaw = (float)_ControllerState.Gamepad.RightThumbX * _YawThrottle / _JoystickRange;
-                gaz = (float)_ControllerState.Gamepad.RightThumbY * _GazThrottle / _JoystickRange;
+               roll = (float)_ControllerState.Gamepad.RightThumbX * _RollThrottle / _JoystickRange;
+               pitch = (float)_ControllerState.Gamepad.RightThumbY * _PitchThrottle / _JoystickRange;
+               //yaw = (float)_ControllerState.Gamepad.RightThumbX * _YawThrottle / _JoystickRange;
+               //gaz = (float)_ControllerState.Gamepad.RightThumbY * _GazThrottle / _JoystickRange;
             }
 
             _FailCounter = 0;
@@ -87,7 +101,7 @@ namespace ARDrone2Client.Common.Input
             //Debug.WriteLine("InputState=" + DroneClient.InputState.ToString());
 
             //Buttons
-            var buttons = _ControllerState.Gamepad.Buttons;
+            
             if (buttons.HasFlag(GamepadButtonFlags.Start))
             {
                 if (await DroneClient.ConnectAsync())
@@ -101,6 +115,10 @@ namespace ARDrone2Client.Common.Input
                         DroneClient.Land();
                     }
                 }
+            }
+            if (buttons.HasFlag(GamepadButtonFlags.LeftShoulder) || buttons.HasFlag(GamepadButtonFlags.RightShoulder))
+            {
+               DroneClient.ResetEmergency();
             }
             if (buttons.HasFlag(GamepadButtonFlags.Back))
             {

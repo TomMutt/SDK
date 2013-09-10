@@ -128,11 +128,9 @@ namespace AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo
 
         private object Activate_4_StringToFloatConverter() { return new global::ARDrone2Client.Windows.ViewModel.StringToFloatConverter(); }
 
-        private object Activate_5_JoystickControl() { return new global::ARDrone2Client.Windows.Input.JoystickControl(); }
+        private object Activate_5_FlyPage() { return new global::ARDrone2.Sample.FlyPage(); }
 
-        private object Activate_6_FlyPage() { return new global::ARDrone2.Sample.FlyPage(); }
-
-        private object Activate_7_MainPage() { return new global::ARDrone2.Sample.MainPage(); }
+        private object Activate_6_MainPage() { return new global::ARDrone2.Sample.MainPage(); }
 
         private void MapAdd_1_IObservableMap(object instance, object key, object item)
         {
@@ -164,14 +162,6 @@ namespace AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo
 
             case "String":
                 xamlType = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlSystemBaseType(typeName, typeof(global::System.String));
-                break;
-
-            case "Windows.UI.Xaml.Media.SolidColorBrush":
-                xamlType = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlSystemBaseType(typeName, typeof(global::Windows.UI.Xaml.Media.SolidColorBrush));
-                break;
-
-            case "Single":
-                xamlType = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlSystemBaseType(typeName, typeof(global::System.Single));
                 break;
 
             case "ARDrone2.Sample.Common.LayoutAwarePage":
@@ -209,29 +199,15 @@ namespace AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case "ARDrone2Client.Windows.Input.JoystickControl":
-                userType = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::ARDrone2Client.Windows.Input.JoystickControl), GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_5_JoystickControl;
-                userType.AddMemberName("BorderElipseColor");
-                userType.AddMemberName("StickColor");
-                userType.AddMemberName("X");
-                AddToMapOfTypeToStandardName(typeof(global::System.Single),
-                                                   "Single");
-                userType.AddMemberName("Y");
-                AddToMapOfTypeToStandardName(typeof(global::System.Single),
-                                                   "Single");
-                xamlType = userType;
-                break;
-
             case "ARDrone2.Sample.FlyPage":
                 userType = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::ARDrone2.Sample.FlyPage), GetXamlTypeByName("ARDrone2.Sample.Common.LayoutAwarePage"));
-                userType.Activator = Activate_6_FlyPage;
+                userType.Activator = Activate_5_FlyPage;
                 xamlType = userType;
                 break;
 
             case "ARDrone2.Sample.MainPage":
                 userType = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::ARDrone2.Sample.MainPage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_MainPage;
+                userType.Activator = Activate_6_MainPage;
                 xamlType = userType;
                 break;
 
@@ -293,36 +269,6 @@ namespace AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo
             var that = (global::ARDrone2.Sample.Common.LayoutAwarePage)instance;
             that.DefaultViewModel = (global::Windows.Foundation.Collections.IObservableMap<global::System.String, global::System.Object>)Value;
         }
-        private object get_1_JoystickControl_BorderElipseColor(object instance)
-        {
-            var that = (global::ARDrone2Client.Windows.Input.JoystickControl)instance;
-            return that.BorderElipseColor;
-        }
-        private void set_1_JoystickControl_BorderElipseColor(object instance, object Value)
-        {
-            var that = (global::ARDrone2Client.Windows.Input.JoystickControl)instance;
-            that.BorderElipseColor = (global::Windows.UI.Xaml.Media.SolidColorBrush)Value;
-        }
-        private object get_2_JoystickControl_StickColor(object instance)
-        {
-            var that = (global::ARDrone2Client.Windows.Input.JoystickControl)instance;
-            return that.StickColor;
-        }
-        private void set_2_JoystickControl_StickColor(object instance, object Value)
-        {
-            var that = (global::ARDrone2Client.Windows.Input.JoystickControl)instance;
-            that.StickColor = (global::Windows.UI.Xaml.Media.SolidColorBrush)Value;
-        }
-        private object get_3_JoystickControl_X(object instance)
-        {
-            var that = (global::ARDrone2Client.Windows.Input.JoystickControl)instance;
-            return that.X;
-        }
-        private object get_4_JoystickControl_Y(object instance)
-        {
-            var that = (global::ARDrone2Client.Windows.Input.JoystickControl)instance;
-            return that.Y;
-        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -337,32 +283,6 @@ namespace AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_0_LayoutAwarePage_DefaultViewModel;
                 xamlMember.Setter = set_0_LayoutAwarePage_DefaultViewModel;
-                break;
-            case "ARDrone2Client.Windows.Input.JoystickControl.BorderElipseColor":
-                userType = (global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ARDrone2Client.Windows.Input.JoystickControl");
-                xamlMember = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlMember(this, "BorderElipseColor", "Windows.UI.Xaml.Media.SolidColorBrush");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_1_JoystickControl_BorderElipseColor;
-                xamlMember.Setter = set_1_JoystickControl_BorderElipseColor;
-                break;
-            case "ARDrone2Client.Windows.Input.JoystickControl.StickColor":
-                userType = (global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ARDrone2Client.Windows.Input.JoystickControl");
-                xamlMember = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlMember(this, "StickColor", "Windows.UI.Xaml.Media.SolidColorBrush");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_2_JoystickControl_StickColor;
-                xamlMember.Setter = set_2_JoystickControl_StickColor;
-                break;
-            case "ARDrone2Client.Windows.Input.JoystickControl.X":
-                userType = (global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ARDrone2Client.Windows.Input.JoystickControl");
-                xamlMember = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlMember(this, "X", "Single");
-                xamlMember.Getter = get_3_JoystickControl_X;
-                xamlMember.SetIsReadOnly();
-                break;
-            case "ARDrone2Client.Windows.Input.JoystickControl.Y":
-                userType = (global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ARDrone2Client.Windows.Input.JoystickControl");
-                xamlMember = new global::AR.Drone2.Sample.W8.ARDrone2_Sample_W8_XamlTypeInfo.XamlMember(this, "Y", "Single");
-                xamlMember.Getter = get_4_JoystickControl_Y;
-                xamlMember.SetIsReadOnly();
                 break;
             }
             return xamlMember;

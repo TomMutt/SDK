@@ -42,7 +42,6 @@ namespace ARDrone2.Sample
             if (_droneClient.InputProviders.Count == 0)
             {
                 _droneClient.InputProviders.Add(new XBox360JoystickProvider(_droneClient));
-                _droneClient.InputProviders.Add(new SoftJoystickProvider(_droneClient, RollPitchJoystick, YawGazJoystick));
             }
             this.DataContext = _droneClient;
             this.DefaultViewModel["Messages"] = _droneClient.Messages;
@@ -72,8 +71,6 @@ namespace ARDrone2.Sample
             AltitudeSlider.Maximum = altitudeMax / 1000;
             AltitudeSlider.StepFrequency = AltitudeSlider.Maximum / 100;
             var active = _droneClient.IsActive;
-            TakeOffLandButton.IsEnabled = active;
-            TakeOffLandButton.Content = _droneClient.IsFlying ? "Land" : "Take off";
             SwitchVideoChannelButton.IsEnabled = active;
             ConfigurationButton.IsEnabled = active;
             ResetEmergency.IsEnabled = active;
@@ -83,12 +80,14 @@ namespace ARDrone2.Sample
 
         private void Page_OnLoaded(object sender, RoutedEventArgs e)
         {
+           _droneClient.SetConfiguration(_droneClient.Configuration.Video.Codec.Set((int)ARDRONE_VIDEO_CODEC.ARDRONE_VIDEO_CODEC_H264_720P).ToCommand());
             arDroneMediaElem.Source = new Uri(_VideoSourceUrl);
             UpdateDisplay();
         }
 
         private void OnResume(object sender, object e)
         {
+           _droneClient.SetConfiguration(_droneClient.Configuration.Video.Codec.Set((int)ARDRONE_VIDEO_CODEC.ARDRONE_VIDEO_CODEC_H264_720P).ToCommand());
             this.arDroneMediaElem.Source = new Uri(_VideoSourceUrl);
         }
 
@@ -140,45 +139,6 @@ namespace ARDrone2.Sample
             UpdateDisplay();
         }
 
-        protected override void OnPointerEntered(PointerRoutedEventArgs e)
-        {
-            base.OnPointerEntered(e);
-            double leftLimit = (ActualWidth / 2) - (YawGazJoystick.ActualWidth / 2);
-            double rightLimit = (ActualWidth / 2) + (YawGazJoystick.ActualWidth / 2);
-            double topLimit = YawGazJoystick.ActualHeight / 2;
-            double bottomLimit = ActualHeight - (YawGazJoystick.ActualWidth / 2);
-            if (e.Pointer.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Touch)
-                return;
-            Point pos = e.GetCurrentPoint(JoystickGrid).Position;
-            var joy = pos.X < (ActualWidth / 2) ? RollPitchJoystick : YawGazJoystick;
-            var bounds = new Rect(joy.ActualWidth / 2, joy.ActualHeight / 2, JoystickGrid.ActualWidth - joy.ActualWidth / 2, JoystickGrid.ActualHeight - joy.ActualHeight / 2);
-            if (!bounds.Contains(pos))
-                return;
-            joy.Margin = new Thickness(pos.X - joy.ActualWidth / 2, pos.Y - joy.ActualHeight / 2, 0, 0);
-            joy.VerticalAlignment = VerticalAlignment.Top;
-            joy.HorizontalAlignment = HorizontalAlignment.Left;
-
-            //if (location.Y > topLimit && location.Y < bottomLimit)
-            //{
-            //    JoystickControl joystick = null;
-            //    if (location.X < leftLimit)
-            //    {
-            //        joystick = RollPitchJoystick;
-            //    }
-            //    else if (location.X > rightLimit)
-            //    {
-            //        joystick = YawGazJoystick;
-            //        //YawGazJoystick.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Top;
-            //        //YawGazJoystick.Margin = new Thickness(0, location.Y - joyPos.X, ActualWidth - location.X - joyPos.Y, 0);
-            //    }
-            //    if (joystick != null)
-            //    {
-            //        var joyPos = new Point(RollPitchJoystick.ActualWidth / 2, RollPitchJoystick.ActualHeight / 2);
-            //        joystick.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Top;
-            //        joystick.Margin = new Thickness(location.X - joyPos.X, location.Y - joyPos.Y, 0, 0);
-            //    }
-            //}
-        }
 
         private void Configuration_Click(object sender, RoutedEventArgs e)
         {

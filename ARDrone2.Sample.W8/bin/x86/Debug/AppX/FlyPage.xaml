@@ -42,17 +42,17 @@
         <!--<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">-->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,10,0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-            <Button x:ConnectionId='7' x:Name="TakePicture" Content="Take a Picture"                           Width="140" />
-            <Button x:ConnectionId='8' x:Name="ResetEmergency" Content="Reset Emergency"                              Width="140" />
-            <Button x:ConnectionId='9' x:Name="ConfigurationButton" Content="Configuration"                             Width="140" />
-            <Button x:ConnectionId='10' x:Name="IndoorOutdoorButton" Content="Indoor"                                   Width="140" />
-            <Button x:ConnectionId='11' x:Name="SwitchVideoChannelButton" Content="Switch video"                                  Width="140" />
+            <Button x:ConnectionId='6' x:Name="TakePicture" Content="Take a Picture"                           Width="140" />
+            <Button x:ConnectionId='7' x:Name="ResetEmergency" Content="Reset Emergency"                              Width="140" />
+            <Button x:ConnectionId='8' x:Name="ConfigurationButton" Content="Configuration"                             Width="140" />
+            <Button x:ConnectionId='9' x:Name="IndoorOutdoorButton" Content="Indoor"                                   Width="140" />
+            <Button x:ConnectionId='10' x:Name="SwitchVideoChannelButton" Content="Switch video"                                  Width="140" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button x:ConnectionId='3' x:Name="PlayAnimationButton" Content="Animation"                                   VerticalAlignment="Bottom" Width="140" />
-                <Button x:ConnectionId='4' x:Name="PlayLedAnimationButton" Content="LED Animation"                                      Width="140" />
-                <Button x:ConnectionId='5' x:Name="StartVideoRecordingButton" Content="Start Rec"                                         Width="140" />
-                <Button x:ConnectionId='6' x:Name="StopVideoRecordingButton" Content="Stop Rec"                                        Width="140" />
+                <Button x:ConnectionId='2' x:Name="PlayAnimationButton" Content="Animation"                                   VerticalAlignment="Bottom" Width="140" />
+                <Button x:ConnectionId='3' x:Name="PlayLedAnimationButton" Content="LED Animation"                                      Width="140" />
+                <Button x:ConnectionId='4' x:Name="StartVideoRecordingButton" Content="Start Rec"                                         Width="140" />
+                <Button x:ConnectionId='5' x:Name="StopVideoRecordingButton" Content="Stop Rec"                                        Width="140" />
             </StackPanel>
         </StackPanel>
         <!--</StackPanel>-->
@@ -69,27 +69,6 @@
                 IsItemClickEnabled="False"
                 IsSwipeEnabled="False"
                 />
-        <Grid x:Name="JoystickGrid"  Grid.Row="1" Grid.ColumnSpan="2">
-            <input:JoystickControl 
-                x:Name="YawGazJoystick" 
-                BorderElipseColor="Red"
-                StickColor="Black"
-                Margin="0,0,80,80"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom" 
-                Height="200" 
-                Width="200"/>
-
-            <client:JoystickControl 
-                x:Name="RollPitchJoystick" 
-                BorderElipseColor="Green"
-                StickColor="Black"
-                Margin="80,0,0,80"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom" 
-                Height="200" 
-                Width="200"/>
-        </Grid>
         <StackPanel Background="Black" Opacity="0.5" Grid.Row="1" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" >
             <TextBlock FontWeight="SemiBold" Margin="10,0,0,10" Text="Yaw" Style="{StaticResource PageSubheaderTextStyle}" />
             <Slider x:Name="YawSlider" Value="{Binding NavigationDataViewModel.Yaw, Converter={StaticResource stringToFloatConverter}}" IsEnabled="False" Minimum="-3.1415" Maximum="3.1415" StepFrequency=".01" Width="120" Height="30"/>
@@ -106,13 +85,6 @@
             <TextBlock FontWeight="SemiBold"  Text="Altitude" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" />
             <Slider x:Name="AltitudeSlider" Value="{Binding NavigationDataViewModel.Altitude, Converter={StaticResource stringToFloatConverter}}" HorizontalAlignment="Center" IsEnabled="False" Minimum="0" Maximum="10000" StepFrequency="100" Height="270" Orientation="Vertical"/>
             <TextBlock x:Name="AltitudeValue" Text="{Binding NavigationDataViewModel.Altitude}" Style="{StaticResource PageSubheaderTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
-            <Button x:ConnectionId='2' x:Name="TakeOffLandButton" 
-                    Content="Tack off"
-                    IsEnabled="False"
-                    HorizontalAlignment="Center" 
-                                                   />
         </StackPanel>
     </Grid>
 </common:LayoutAwarePage>
